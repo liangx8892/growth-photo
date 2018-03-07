@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
+import { FilePath } from '@ionic-native/file-path';
 
 import { Pro } from '@ionic/pro';
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
@@ -66,6 +67,7 @@ export class MyErrorHandler implements ErrorHandler {
     SplashScreen,
     Camera,
     File,
+    FilePath,
     IonicErrorHandler,
     {provide: ErrorHandler, useClass: MyErrorHandler}
   ]
