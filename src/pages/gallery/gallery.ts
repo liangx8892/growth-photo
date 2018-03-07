@@ -19,7 +19,7 @@ export class GalleryPage {
   
   ngOnInit() {
     Pro.monitoring.log('dataDirectory:'+window['cordova'].file.dataDirectory, {level: 'info'});
-    this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true}
+    this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true});
   }
 
   takePhoto() { 
