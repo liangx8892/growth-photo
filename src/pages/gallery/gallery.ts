@@ -19,7 +19,11 @@ export class GalleryPage implements OnInit {
   }
   
   ngOnInit() {
-  	Pro.monitoring.log('this.file:'+JSON.stringify(this.file), {level: 'info'});
+    this.filePath.resolveNativePath(this.file.dataDirectory).then(dataDirectory => {
+      Pro.monitoring.log('dataDirectory:' + dataDirectory, {level: 'info'});
+    });
+    
+  	
     this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true});
   }
 
