@@ -18,8 +18,10 @@ export class GalleryPage {
   }
 
   takePhoto() {
-    let dataDirectory = this.filePath.resolveNativePath(this.file.dataDirectory);
-    Pro.monitoring.log('dataDirectory:' + dataDirectory, {level: 'info'});
+    this.filePath.resolveNativePath(this.file.dataDirectory).then((dataDirectory) => {
+      Pro.monitoring.log('dataDirectory:' + dataDirectory, {level: 'info'});
+    });
+    
     
 	const options: CameraOptions = {
 	  quality: 100,
