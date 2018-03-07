@@ -56,7 +56,7 @@ export class GalleryPage {
         	}
         );
       })
-      .catch(err => console.log(err));
+      .catch(err => Pro.monitoring.exception(err));
     
 
 	 
