@@ -19,8 +19,7 @@ export class GalleryPage implements OnInit {
   }
   
   ngOnInit() {
-    Pro.monitoring.log('dataDirectory1:'+this.file.dataDirectory, {level: 'info'});
-    Pro.monitoring.log('dataDirectory2:'+window['cordova'].file.dataDirectory, {level: 'info'});
+  	Pro.monitoring.log('this.file:'+JSON.stringify(this.file), {level: 'info'});
     this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true});
   }
 
