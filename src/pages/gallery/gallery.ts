@@ -32,6 +32,6 @@ export class GalleryPage {
 	 // Handle error
 	});
 	*/
-	this.photoPath = this.file.applicationDirectory;
+	this.photoPath = this.file.cacheDirectory;
   }
 }
