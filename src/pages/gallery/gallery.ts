@@ -41,11 +41,17 @@ export class GalleryPage {
         let originalFileName = this.photoPath.substr(this.photoPath.lastIndexOf('/') + 1, this.photoPath.length);
         Pro.monitoring.log('originalPath:' + originalPath, {level: 'info'});
         Pro.monitoring.log('originalFileName:' + originalFileName, {level: 'info'});
+        let originalPathWithoutSlash = originalPath.substr(0, originalPath.length - 1);
+        let newPath = originalPathWithoutSlash.substr(0, originalPathWithoutSlash.lastIndexOf('/')+1) + 'files';
+
         
         let now = new Date();
-        let newName = 'xxxxxx';
+        let dateStr = now.toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit', day:'2-digit'}).replace(/\//g, '');
+        let timeStr = now.toLocaleTimeString('zh-CN',{hour12:false}).replace(/:/g, '');
+        let newName = dateStr + timeStr + '.jpg';
+        Pro.monitoring.log('newPath:' + newPath, {level: 'info'});
         Pro.monitoring.log('newName:' + newName, {level: 'info'});
-        this.file.moveFile(originalPath, originalFileName, this.file.dataDirectory, newName).then(
+        this.file.moveFile(originalPath, originalFileName, newPath, newName).then(
         	(entry) => {
         		Pro.monitoring.log('Image moved.', {level: 'info'});
         	}
