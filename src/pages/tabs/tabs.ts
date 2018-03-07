@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { CameraPage } from '../camera/camera';
+//import { CameraPage } from '../camera/camera';
 import { SettingsPage } from '../settings/settings';
 import { GalleryPage } from '../gallery/gallery';
 
@@ -10,7 +10,7 @@ import { GalleryPage } from '../gallery/gallery';
 export class TabsPage {
 
   tab1Root = GalleryPage;
-  tab2Root = CameraPage;
+  //tab2Root = CameraPage;
   tab3Root = SettingsPage;
 
   constructor() {

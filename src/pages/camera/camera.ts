@@ -10,5 +10,4 @@ export class CameraPage {
   constructor(public navCtrl: NavController) {
 
   }
-
 }

@@ -1,9 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>相册</ion-title>
+    <ion-title text-center>成长相册</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="twitter" (click)="takePhoto()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h2>相册容器</h2>
+  <div>文件路径：{{photoPath}}</div>
 </ion-content>
