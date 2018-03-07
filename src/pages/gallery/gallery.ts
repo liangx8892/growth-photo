@@ -18,11 +18,8 @@ export class GalleryPage {
   }
   
   ngOnInit() {
-    window.addEventListener('filePluginIsReady', function(){ 
-		Pro.monitoring.log('dataDirectory:'+this.file.dataDirectory, {level: 'info'});
-		this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true});
-	}, false);
-    
+    Pro.monitoring.log('dataDirectory:'+window['cordova'].file.dataDirectory, {level: 'info'});
+    this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true}
   }
 
   takePhoto() { 
