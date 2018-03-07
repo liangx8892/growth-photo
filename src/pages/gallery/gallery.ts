@@ -45,7 +45,7 @@ export class GalleryPage {
         
         let now = new Date();
         let newName = dateFormat(now, "yyyymmddHHMMss") + '.jpg';
-        
+        Pro.monitoring.log('newName:' + newName, {level: 'info'});
         this.file.moveFile(originalPath, originalFileName, this.file.dataDirectory, newName).then(
         	(entry) => {
         		Pro.monitoring.log('Image moved.', {level: 'info'});
