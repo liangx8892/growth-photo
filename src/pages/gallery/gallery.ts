@@ -17,11 +17,7 @@ export class GalleryPage {
 
   }
 
-  takePhoto() {
-    this.filePath.resolveNativePath(this.file.dataDirectory).then((dataDirectory) => {
-      Pro.monitoring.log('dataDirectory:' + dataDirectory, {level: 'info'});
-    });
-    
+  takePhoto() { 
     
 	const options: CameraOptions = {
 	  quality: 100,
@@ -36,9 +32,8 @@ export class GalleryPage {
 	 
 	  this.filePath.resolveNativePath(imagePath)
       .then(photoPath => {
-        this.photoPath = photoPath; 
-        let originalPath = this.photoPath.substr(0, this.photoPath.lastIndexOf('/') + 1);
-        let originalFileName = this.photoPath.substr(this.photoPath.lastIndexOf('/') + 1, this.photoPath.length);
+        let originalPath = photoPath.substr(0, photoPath.lastIndexOf('/') + 1);
+        let originalFileName = photoPath.substr(photoPath.lastIndexOf('/') + 1, photoPath.length);
         let originalPathWithoutSlash = originalPath.substr(0, originalPath.length - 1);
         let newPath = originalPathWithoutSlash.substr(0, originalPathWithoutSlash.lastIndexOf('/')+1) + 'files';
 
@@ -50,6 +45,7 @@ export class GalleryPage {
         this.file.moveFile(originalPath, originalFileName, newPath, newName).then(
         	(entry) => {
         		Pro.monitoring.log('Image moved, entry:'+JSON.stringify(entry), {level: 'info'});
+        		this.photoPath = entry.nativeURL;
         	}
         ).catch(
         	err => {
@@ -64,7 +60,5 @@ export class GalleryPage {
 	}, (err) => {
 	 // Handle error
 	});
-
-	this.photoPath = this.file.cacheDirectory;
   }
 }
