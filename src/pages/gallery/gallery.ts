@@ -16,6 +16,10 @@ export class GalleryPage {
   constructor(public navCtrl: NavController, private file: File, private filePath: FilePath, private camera: Camera) {
 
   }
+  
+  ngOnInit() {
+    this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', true);
+  }
 
   takePhoto() { 
     
