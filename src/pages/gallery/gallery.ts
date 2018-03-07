@@ -18,7 +18,11 @@ export class GalleryPage {
   }
   
   ngOnInit() {
-    this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}');
+    window.addEventListener('filePluginIsReady', function(){ 
+		Pro.monitoring.log('dataDirectory:'+this.file.dataDirectory, {level: 'info'});
+		this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true});
+	}, false);
+    
   }
 
   takePhoto() { 
