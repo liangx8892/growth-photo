@@ -4,12 +4,13 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { Pro } from '@ionic/pro';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'page-gallery',
   templateUrl: 'gallery.html'
 })
-export class GalleryPage {
+export class GalleryPage implements OnInit {
 
   @Input() photoPath: string;
 
@@ -18,7 +19,8 @@ export class GalleryPage {
   }
   
   ngOnInit() {
-    Pro.monitoring.log('dataDirectory:'+window['cordova'].file.dataDirectory, {level: 'info'});
+    Pro.monitoring.log('dataDirectory1:'+this.file.dataDirectory, {level: 'info'});
+    Pro.monitoring.log('dataDirectory2:'+window['cordova'].file.dataDirectory, {level: 'info'});
     this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true});
   }
 
