@@ -4,7 +4,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { Pro } from '@ionic/pro';
-import { dateFormat } from 'dateformat';
 
 @Component({
   selector: 'page-gallery',
@@ -44,7 +43,7 @@ export class GalleryPage {
         Pro.monitoring.log('originalFileName:' + originalFileName, {level: 'info'});
         
         let now = new Date();
-        let newName = dateFormat(now, "yyyymmddHHMMss") + '.jpg';
+        let newName = 'xxxxxx';
         Pro.monitoring.log('newName:' + newName, {level: 'info'});
         this.file.moveFile(originalPath, originalFileName, this.file.dataDirectory, newName).then(
         	(entry) => {
