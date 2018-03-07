@@ -18,7 +18,7 @@ export class GalleryPage {
   }
   
   ngOnInit() {
-    this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', true);
+    this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}');
   }
 
   takePhoto() { 
