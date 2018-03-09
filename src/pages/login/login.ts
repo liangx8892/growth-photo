@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
   selector: 'page-login',
@@ -13,7 +12,7 @@ export class LoginPage {
   private password: string;
   private error: string;
 
-  constructor(private navCtrl: NavController, private keyboard: Keyboard) {
+  constructor(private navCtrl: NavController) {
 
   }
   
@@ -24,7 +23,6 @@ export class LoginPage {
   ionViewDidLoad(): void {
     setTimeout(() => {
       this.usernameInput.setFocus();
-      this.keyboard.show();
     }, 500);
   }
 }
