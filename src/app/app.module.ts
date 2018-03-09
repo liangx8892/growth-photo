@@ -7,6 +7,7 @@ import { CameraPage } from '../pages/camera/camera';
 import { SettingsPage } from '../pages/settings/settings';
 import { GalleryPage } from '../pages/gallery/gallery';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +49,8 @@ export class MyErrorHandler implements ErrorHandler {
     CameraPage,
     SettingsPage,
     GalleryPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,8 @@ export class MyErrorHandler implements ErrorHandler {
     CameraPage,
     SettingsPage,
     GalleryPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

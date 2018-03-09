@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>
+      登录
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input placeholder="请输入用户名" name="username" id="loginField" type="text" required [(ngModel)]="username" autofocus></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="请输入密码" name="password" id="passwordField" type="password" required [(ngModel)]="password"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid">登录
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

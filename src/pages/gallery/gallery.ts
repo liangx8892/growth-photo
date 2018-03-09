@@ -4,13 +4,12 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { Pro } from '@ionic/pro';
-import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'page-gallery',
   templateUrl: 'gallery.html'
 })
-export class GalleryPage implements OnInit {
+export class GalleryPage {
 
   @Input() photoPath: string;
 
@@ -18,15 +17,6 @@ export class GalleryPage implements OnInit {
 
   }
   
-  ngOnInit() {
-    this.filePath.resolveNativePath(this.file.dataDirectory).then(dataDirectory => {
-      Pro.monitoring.log('dataDirectory:' + dataDirectory, {level: 'info'});
-    });
-    
-  	
-    this.file.writeFile(this.file.dataDirectory, 'settings.json', '{"a": "1", "b": "2"}', {replace:true});
-  }
-
   takePhoto() { 
     
 	const options: CameraOptions = {
