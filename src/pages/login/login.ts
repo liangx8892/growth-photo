@@ -24,7 +24,7 @@ export class LoginPage {
   ionViewDidLoad(): void {
     setTimeout(() => {
       this.usernameInput.setFocus();
-      this.keyboard.show();
-    }, 500);
+      setTimeout(() => this.keyboard.show(), 100); 
+    }, 200);
   }
 }
