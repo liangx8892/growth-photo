@@ -21,10 +21,10 @@ export class LoginPage {
     this.navCtrl.push(TabsPage);
   }
 
-  ionViewDidLoad(): void {
+  ionViewWillEnter(): void {
     setTimeout(() => {
+      this.usernameInput.nativeElement.focus();
       this.keyboard.show();
-      this.usernameInput.setFocus();
-    }, 200);
+    }, 800);
   }
 }
