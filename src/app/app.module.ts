@@ -17,6 +17,7 @@ import { FilePath } from '@ionic-native/file-path';
 
 import { Pro } from '@ionic/pro';
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { Keyboard } from '@ionic-native/keyboard';
 
 Pro.init('317d7924', {
   appVersion: '0.0.1'
@@ -71,6 +72,7 @@ export class MyErrorHandler implements ErrorHandler {
     Camera,
     File,
     FilePath,
+    Keyboard,
     IonicErrorHandler,
     {provide: ErrorHandler, useClass: MyErrorHandler}
   ]
