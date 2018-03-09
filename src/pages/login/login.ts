@@ -13,7 +13,7 @@ export class LoginPage {
   private password: string;
   private error: string;
 
-  constructor(private navCtrl: NavController, private keyboard: Keyboard) {
+  constructor(private navCtrl: NavController) {
 
   }
   
@@ -23,8 +23,8 @@ export class LoginPage {
 
   ionViewDidLoad(): void {
     setTimeout(() => {
+      Keyboard.show();
       this.usernameInput.setFocus();
-      setTimeout(() => this.keyboard.show(), 100); 
     }, 200);
   }
 }
