@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { Keyboard } from '@ionic-native/keyboard';
@@ -8,7 +8,7 @@ import { Keyboard } from '@ionic-native/keyboard';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  @ViewChild('usernameInput') usernameInput: any;
+  @ViewChild('usernameInput') usernameInput: ElementRef;
   private username: string;
   private password: string;
   private error: string;
