@@ -7,5 +7,26 @@
 </ion-header>
 
 <ion-content>
-
+  <form #settingsForm="ngForm" (ngSubmit)="saveSettings()" autocomplete="off">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>宝宝名字</ion-label>
+        <ion-input type="text" name='babyName' value="" required [(ngModel)]="settings.babyName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>预产期</ion-label>
+        <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY年MM月DD日" name='expectedBirthDate' required [(ngModel)]="settings.expectedBirthDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>宝宝生日</ion-label>
+        <ion-datetime cancelText="取消" doneText="确定" displayFormat="YYYY年MM月DD日" name='birthDate' [(ngModel)]="settings.birthDate"></ion-datetime>
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col>
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!settingsForm.form.valid">保存设置
+        </button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

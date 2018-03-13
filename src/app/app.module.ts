@@ -19,6 +19,16 @@ import { Pro } from '@ionic/pro';
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { Keyboard } from '@ionic-native/keyboard';
 
+import { JwtModule } from '@auth0/angular-jwt';
+import { HttpClientModule } from '@angular/common/http';
+
+import { LoginService } from '../services/login.srv';
+import { SettingsService } from '../services/settings.srv';
+import { AuthService } from '../services/auth.srv';
+
+import { httpInterceptorProviders } from '../interceptors';
+
+
 Pro.init('317d7924', {
   appVersion: '0.0.1'
 })
@@ -30,7 +40,7 @@ export class MyErrorHandler implements ErrorHandler {
   constructor(injector: Injector) {
     try {
       this.ionicErrorHandler = injector.get(IonicErrorHandler);
-    } catch(e) {
+    } catch (e) {
       // Unable to get the IonicErrorHandler provider, ensure
       // IonicErrorHandler has been added to the providers list below
     }
@@ -44,6 +54,10 @@ export class MyErrorHandler implements ErrorHandler {
   }
 }
 
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -54,6 +68,14 @@ export class MyErrorHandler implements ErrorHandler {
     LoginPage
   ],
   imports: [
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['192.168.0.107:3000'],
+        blacklistedRoutes: ['http://192.168.0.107:3000/api/auth/login']
+      }
+    }),
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -69,12 +91,16 @@ export class MyErrorHandler implements ErrorHandler {
   providers: [
     StatusBar,
     SplashScreen,
+    LoginService,
+    SettingsService,
+    AuthService,
+    httpInterceptorProviders,
     Camera,
     File,
     FilePath,
     Keyboard,
     IonicErrorHandler,
-    {provide: ErrorHandler, useClass: MyErrorHandler}
+    { provide: ErrorHandler, useClass: MyErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
