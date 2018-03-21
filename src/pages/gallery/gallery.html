@@ -10,15 +10,20 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-  <img src="{{photoPath}}"/>
-  <ion-card-content>
-    <ion-card-title>
-      刚刚照的照片
+
+
+  <ion-card *ngFor="let photo of photos">
+    <img src="{{photo.localPath}}" />
+    <ion-card-content>
+      <ion-card-title>
+        {{photo.title}}
       </ion-card-title>
-    <p>
-		刚刚照的照片，刚刚照的照片，刚刚照的照片，刚刚照的照片！！！
-    </p>
-  </ion-card-content>
+      <xeditable [(value)]="photo.description" (valueChange)="saveDescription(photo)"></xeditable>
+    </ion-card-content>
+    <ion-buttons end>
+        <button color='danger' (click)="deletePhoto(photo)" ion-button icon-only item-end icon-right>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+    </ion-buttons>
   </ion-card>
 </ion-content>

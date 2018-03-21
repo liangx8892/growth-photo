@@ -1,8 +1,12 @@
-const API_ENDPOINTS_BASE_URI: string = 'http://192.168.0.107:3000/api';
+export const API_HOST_NAME = 'api.smartfunsfamily.com:3000';
+const API_PROTOCOL_PREFIX = 'http://';
+const API_ENDPOINTS_BASE_URI: string = API_PROTOCOL_PREFIX 
+    + API_HOST_NAME + '/api';
 
 export const API_ENDPOINTS = {
     login: API_ENDPOINTS_BASE_URI + '/auth/login',
     settings: API_ENDPOINTS_BASE_URI + '/settings',
+    photo: API_ENDPOINTS_BASE_URI + '/photo',
 };
 
 export const API_CONSTANTS = {

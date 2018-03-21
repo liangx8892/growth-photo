@@ -25,9 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../services/login.srv';
 import { SettingsService } from '../services/settings.srv';
 import { AuthService } from '../services/auth.srv';
-
+import { GalleryService } from '../services/gallery.srv';
 import { httpInterceptorProviders } from '../interceptors';
-
+import { XeditableComponent } from '../widgets/xeditable/xeditable';
+import { API_HOST_NAME, API_ENDPOINTS } from './constants';
 
 Pro.init('317d7924', {
   appVersion: '0.0.1'
@@ -65,15 +66,16 @@ export function tokenGetter() {
     SettingsPage,
     GalleryPage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    XeditableComponent
   ],
   imports: [
     HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['192.168.0.107:3000'],
-        blacklistedRoutes: ['http://192.168.0.107:3000/api/auth/login']
+        whitelistedDomains: [API_HOST_NAME],
+        blacklistedRoutes: [API_ENDPOINTS.login]
       }
     }),
     BrowserModule,
@@ -94,6 +96,7 @@ export function tokenGetter() {
     LoginService,
     SettingsService,
     AuthService,
+    GalleryService,
     httpInterceptorProviders,
     Camera,
     File,
