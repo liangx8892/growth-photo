@@ -7,6 +7,7 @@ import { Pro } from '@ionic/pro';
 import { GalleryService } from '../../services/gallery.srv';
 import { SettingsService } from '../../services/settings.srv';
 import { AlertController } from 'ionic-angular';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @Component({
   selector: 'page-gallery',
@@ -20,18 +21,24 @@ export class GalleryPage {
     private filePath: FilePath, private camera: Camera,
     private galleryService: GalleryService,
     private settingsService: SettingsService,
-    private alertCtl: AlertController) {
+    private alertCtl: AlertController,
+    private photoViewer: PhotoViewer) {
       this.initialize();
   }
 
-  takePhoto() {
+  viewPhoto(photo) {
+    this.photoViewer.show(photo.localPath, photo.title, {share: false});
+  }
+
+  takePhoto(sourceType) {
 
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
+      correctOrientation: true,
+      sourceType: sourceType
     }
 
     this.camera.getPicture(options).then((imagePath) => {
@@ -69,7 +76,7 @@ export class GalleryPage {
                 }
               );
               
-              Pro.monitoring.log('Image moved, entry:' + JSON.stringify(entry), { level: 'info' });
+              //Pro.monitoring.log('Image moved, entry:' + JSON.stringify(entry), { level: 'info' });
             }
           ).catch(
             err => {

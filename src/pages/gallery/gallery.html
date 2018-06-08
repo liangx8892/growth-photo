@@ -2,7 +2,10 @@
   <ion-navbar>
     <ion-title text-center>成长相册</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="twitter" (click)="takePhoto()">
+      <button ion-button icon-only color="twitter" (click)="takePhoto(0)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-button icon-only color="twitter" (click)="takePhoto(1)">
         <ion-icon name="camera"></ion-icon>
       </button>
     </ion-buttons>
@@ -13,7 +16,7 @@
 
 
   <ion-card *ngFor="let photo of photos">
-    <img src="{{photo.localPath}}" />
+    <img src="{{photo.localPath}}" (click)="viewPhoto(photo)"/>
     <ion-card-content>
       <ion-card-title>
         {{photo.title}}

@@ -30,6 +30,12 @@ export class GalleryService {
 
   generateTitle(photo, settings) {
     let title = '';
+    if(typeof settings.birthDate === 'string'){
+      settings.birthDate = new Date(settings.birthDate);
+    }
+    if(typeof photo.createDate === 'string'){
+      photo.createDate = new Date(photo.createDate);
+    }
     if(settings.birthDate && photo.createDate >= settings.birthDate){
       var days = this.getDaysOffset(settings.birthDate, photo.createDate);
       title = settings.babyName + '出生第' + days + '天';

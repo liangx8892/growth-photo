@@ -29,6 +29,7 @@ import { GalleryService } from '../services/gallery.srv';
 import { httpInterceptorProviders } from '../interceptors';
 import { XeditableComponent } from '../widgets/xeditable/xeditable';
 import { API_HOST_NAME, API_ENDPOINTS } from './constants';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 Pro.init('317d7924', {
   appVersion: '0.0.1'
@@ -92,6 +93,7 @@ export function tokenGetter() {
   ],
   providers: [
     StatusBar,
+    PhotoViewer,
     SplashScreen,
     LoginService,
     SettingsService,

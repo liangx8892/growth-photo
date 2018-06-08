@@ -85,5 +85,6 @@
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-filepath" spec="^1.2.0" />
     <allow-navigation href="http://192.168.0.110:8100" />
+    <plugin name="com-sarriaroman-photoviewer" spec="^1.1.16" />
     <engine name="android" spec="7.0.0" />
 </widget>
