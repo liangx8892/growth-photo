@@ -20,8 +20,9 @@ export class GalleryService {
     return this.http.delete(API_ENDPOINTS.photo + '/' + photoId, httpOptions);
   }
 
-  getPhotos() {
-    return this.http.get(API_ENDPOINTS.photo, httpOptions);
+  getPhotos(currentPage: number, pageSize: number, changedSize: number) {
+
+    return this.http.get(API_ENDPOINTS.photo+ '/' + currentPage + '/' + pageSize + '/' + changedSize, httpOptions);
   }
 
   updatePhoto(photo) {

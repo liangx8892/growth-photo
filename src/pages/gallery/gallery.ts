@@ -17,12 +17,18 @@ export class GalleryPage {
 
   private photos = [];
   private settings = {};
+  private currentPage: number;
+  private pageSize: number;
+  private changedSize: number;
   constructor(public navCtrl: NavController, private file: File,
     private filePath: FilePath, private camera: Camera,
     private galleryService: GalleryService,
     private settingsService: SettingsService,
     private alertCtl: AlertController,
     private photoViewer: PhotoViewer) {
+      this.currentPage = 0;
+      this.pageSize = 10;
+      this.changedSize = 0;
       this.initialize();
   }
 
@@ -70,6 +76,7 @@ export class GalleryPage {
                   photo['title'] = this.galleryService.generateTitle(photo, this.settings);
 
                   this.photos.unshift(photo);
+                  this.changedSize = this.changedSize + 1;
                 },
                 error => {
                   console.error('get photos failed:', error);
@@ -120,6 +127,7 @@ export class GalleryPage {
                     self.file.removeFile(filePath, fileName).then((result) => {});
                   }
                 });
+                this.changedSize = this.changedSize - 1;
               },
               error => {
                 console.error('get photos failed:', error);
@@ -146,7 +154,7 @@ export class GalleryPage {
 
   initialize() {
     this.settings = this.settingsService.getSettingsFromCache();
-    this.galleryService.getPhotos().subscribe(
+    this.galleryService.getPhotos(this.currentPage, this.pageSize, this.changedSize).subscribe(
       data => {
         if (data && data instanceof Array && data.length > 0) {
           this.photos = data;
@@ -159,5 +167,26 @@ export class GalleryPage {
         console.error('get photos failed:', error);
       }
     );
+  }
+
+  doInfinite(infiniteScroll) {
+    
+    this.galleryService.getPhotos(this.currentPage + 1, this.pageSize, this.changedSize).subscribe(
+      data => {
+        if (data && data instanceof Array && data.length > 0) {
+          data.forEach((photo) => {
+            photo['title'] = this.galleryService.generateTitle(photo, this.settings);
+            this.photos.push(photo);
+          });
+          this.currentPage = this.currentPage + 1;
+        }
+        infiniteScroll.complete();
+      },
+      error => {
+        console.error('get photos failed:', error);
+        infiniteScroll.complete();
+      }
+    );
+    
   }
 }
